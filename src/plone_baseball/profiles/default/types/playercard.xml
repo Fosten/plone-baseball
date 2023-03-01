@@ -25,8 +25,8 @@
   </property>
   <property name="default_view_fallback">False</property>
   <property name="add_permission">cmf.AddPortalContent</property>
-  <property name="klass">plone_happy_site.content.playercard.PlayerCard</property>
-  <property name="schema">plone_happy_site.content.playercard.IPlayerCard</property>
+  <property name="klass">plone_baseball.content.playercard.PlayerCard</property>
+  <property name="schema">plone_baseball.content.playercard.IPlayerCard</property>
   <property name="behaviors">
     <element value="plone.dublincore" />
     <element value="plone.namefromtitle" />
