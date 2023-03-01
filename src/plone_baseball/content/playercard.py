@@ -9,32 +9,14 @@ from zope.interface import implementer
 class IPlayerCard(model.Schema):
     """Dexterity-Schema for PlayerCards"""
 
-    firstname = schema.TextLine(
-        title="First Name",
-        description="First Name (or names) of the player",
-        required=True,
-    )
-
-    lastname = schema.TextLine(
-        title="Last Name",
-        description="Last Name (or names) of the player",
-        required=True,
-    )
-
-    birthdate = schema.Date(
-        title="Birthdate",
-        description="Birthdate of the player",
-        required=True,
-    )
-
     positions = schema.TextLine(
         title="Fielding positions",
-        required=True,
+        required=False,
     )
 
     currentteam = schema.TextLine(
         title="Current Team",
-        required=True,
+        required=False,
     )
 
     image = NamedBlobImage(
@@ -47,7 +29,7 @@ class IPlayerCard(model.Schema):
         title="Blurb",
         description="Player blurb (max. 2000 characters)",
         max_length=2000,
-        required=True,
+        required=False,
     )
 
 
