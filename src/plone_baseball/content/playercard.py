@@ -9,14 +9,9 @@ from zope.interface import implementer
 class IPlayerCard(model.Schema):
     """Dexterity-Schema for PlayerCards"""
 
-    positions = schema.TextLine(
-        title="Fielding positions",
-        required=False,
-    )
-
-    currentteam = schema.TextLine(
-        title="Current Team",
-        required=False,
+    playerID = schema.TextLine(
+        title="Player ID",
+        required=True,
     )
 
     image = NamedBlobImage(
