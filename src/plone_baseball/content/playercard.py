@@ -9,7 +9,7 @@ from zope.interface import implementer
 class IPlayerCard(model.Schema):
     """Dexterity-Schema for PlayerCards"""
 
-    playerID = schema.TextLine(
+    playerID = schema.Interger(
         title="Player ID",
         required=True,
     )
