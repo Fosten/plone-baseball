@@ -28,12 +28,12 @@ def post_install(context):
 
 
 def post_content(portal):
-    if not portal.get("import-players", False):
+    if not portal.get("players", False):
         mainfolder = api.content.create(
             type="Document",
             container=portal,
-            title="Import Players",
-            id="import-players",
+            title="Players",
+            id="players",
         )
 
     json_array = json.loads(
@@ -56,7 +56,7 @@ def post_content(portal):
             title=item["nameFirstLast"],
             id=item["nameSlug"],
             playerID=item["id"],
-            container=portal["import-players"],
+            container=portal["players"],
         )
 
 

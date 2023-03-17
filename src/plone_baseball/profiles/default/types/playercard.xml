@@ -28,6 +28,7 @@
   <property name="klass">plone_baseball.content.playercard.PlayerCard</property>
   <property name="schema">plone_baseball.content.playercard.IPlayerCard</property>
   <property name="behaviors">
+    <element value="plone.restapi.behaviors.IBlocks" />
     <element value="plone.dublincore" />
     <element value="plone.namefromtitle" />
     <element value="plone.versioning" />
