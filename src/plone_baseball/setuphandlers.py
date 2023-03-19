@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 from Products.CMFPlone.interfaces import INonInstallable
 from zope.interface import implementer
-
+from zope.component.hooks import setSite 
 from plone import api
 import requests
 import json
+import transaction
 
 
 @implementer(INonInstallable)
@@ -51,22 +52,33 @@ def post_content(portal):
     ]
 
     for item in store_list:
-        obj = api.content.create(
-            type="playercard",
-            title=item["nameFirstLast"],
-            id=item["nameSlug"],
-            playerID=item["id"],
-            container=portal["players"],
-        )
+        try:
+            obj = api.content.create(
+                type="playercard",
+                title=item["nameFirstLast"],
+                id=item["nameSlug"],
+                playerID=item["id"],
+                container=portal["players"],
+            )
+            print(f"adding {obj.absolute_url()}")
 
+        except Exception as e:
+            print(f"Error adding object {obj.absolute_url()}: {e}")
 
 def uninstall(context):
     """Uninstall script"""
     # Do something at the end of the uninstallation of this package.
-    portal = api.portal.get()
-    if "players" in portal:
+    catalog = api.portal.get_tool(name="portal_catalog")
+
+    for brain in catalog(portal_type="playercard"):
+        obj= brain.getObject()
+
         try:
-            api.content.delete(portal["players"])
-        except:
-            # this gets messy in tests
-            pass
+            #Below line needs a transaction to actually delete the object 
+            api.content.delete(obj, check_linkintegrity=False)
+            print(f"deleting {obj.absolute_url()}")
+            
+        except Exception as e:
+            print(f"Error deleting object {obj.absolute_url()}: {e}")
+
+    transaction.commit()
