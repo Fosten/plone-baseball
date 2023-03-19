@@ -64,9 +64,9 @@ def uninstall(context):
     """Uninstall script"""
     # Do something at the end of the uninstallation of this package.
     portal = api.portal.get()
-    if 'players' in portal:
+    if "players" in portal:
         try:
-            api.content.delete(portal['players'])
+            api.content.delete(portal["players"])
         except:
             # this gets messy in tests
             pass
