@@ -74,7 +74,7 @@ def uninstall(context):
         obj = brain.getObject()
 
         try:
-            # Below line needs a transaction to actually delete the object 
+            # Below line needs a transaction to actually delete the object
             api.content.delete(obj, check_linkintegrity=False)
             print(f"deleting {obj.absolute_url()}")
 
@@ -82,4 +82,3 @@ def uninstall(context):
             print(f"Error deleting object {obj.absolute_url()}: {e}")
 
     transaction.commit()
-    
