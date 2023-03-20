@@ -6,6 +6,17 @@ import requests
 import json
 import transaction
 
+DEFAULT_BLOCKS = {
+    "d3f1c443-583f-4e8e-a682-3bf25752a300": {"@type": "playerinfo"},
+    "7624cf59-05d0-4055-8f55-5fd6597d84b0": {"@type": "playerstats"},
+}
+DEFAULT_BLOCKS_LAYOUT = {
+    "items": [
+        "d3f1c443-583f-4e8e-a682-3bf25752a300",
+        "7624cf59-05d0-4055-8f55-5fd6597d84b0",
+    ]
+}
+
 
 @implementer(INonInstallable)
 class HiddenProfiles(object):
@@ -18,13 +29,6 @@ class HiddenProfiles(object):
     def getNonInstallableProducts(self):
         """Hide the upgrades package from site-creation and quickinstaller."""
         return ["plone_baseball.upgrades"]
-
-
-def post_install(context):
-    """Post install script"""
-    # Do something at the end of the installation of this package.
-    portal = api.portal.get()
-    post_content(portal)
 
 
 def post_content(portal):
@@ -65,9 +69,22 @@ def post_content(portal):
             print(f"Error adding object {obj.absolute_url()}: {e}")
 
 
-def uninstall(context):
-    """Uninstall script"""
-    # Do something at the end of the uninstallation of this package.
+def patch_playercards(portal, DEFAULT_BLOCKS, DEFAULT_BLOCKS_LAYOUT):
+    catalog = api.portal.get_tool(name="portal_catalog")
+
+    for brain in catalog(portal_type="playercard"):
+        obj = brain.getObject()
+        try:
+                obj.blocks = DEFAULT_BLOCKS
+                print(f"updating blocks for {obj.absolute_url()}")
+                obj.blocks_layout = DEFAULT_BLOCKS_LAYOUT
+                print(f"updating blocks_layout for {obj.absolute_url()}")
+
+        except Exception as e:
+            print(f"Error updating object {obj.absolute_url()}: {e}")
+
+
+def remove_playercards(portal):
     catalog = api.portal.get_tool(name="portal_catalog")
 
     for brain in catalog(portal_type="playercard"):
@@ -82,3 +99,18 @@ def uninstall(context):
             print(f"Error deleting object {obj.absolute_url()}: {e}")
 
     transaction.commit()
+
+
+def post_install(context):
+    """Post install script"""
+    # Do something at the end of the installation of this package.
+    portal = api.portal.get()
+    post_content(portal)
+    patch_playercards(portal, DEFAULT_BLOCKS, DEFAULT_BLOCKS_LAYOUT)
+
+
+def uninstall(context):
+    """Uninstall script"""
+    # Do something at the end of the uninstallation of this package.
+    portal = api.portal.get()
+    remove_playercards(portal)
