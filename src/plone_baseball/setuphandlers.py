@@ -8,11 +8,13 @@ import transaction
 
 DEFAULT_BLOCKS = {
     "d3f1c443-583f-4e8e-a682-3bf25752a300": {"@type": "playerinfo"},
+    "8624cf51-15d1-3051-3f51-3fd6597d84b1": {"@type": "singleseasonstats"},
     "7624cf59-05d0-4055-8f55-5fd6597d84b0": {"@type": "playerstats"},
 }
 DEFAULT_BLOCKS_LAYOUT = {
     "items": [
         "d3f1c443-583f-4e8e-a682-3bf25752a300",
+        "8624cf51-15d1-3051-3f51-3fd6597d84b1",
         "7624cf59-05d0-4055-8f55-5fd6597d84b0",
     ]
 }
