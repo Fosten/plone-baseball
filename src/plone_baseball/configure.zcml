@@ -3,7 +3,8 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:plone="http://namespaces.plone.org/plone"
-    i18n_domain="plone_baseball">
+    i18n_domain="plone_baseball"
+    >
 
   <i18n:registerTranslations directory="locales" />
 
@@ -20,27 +21,27 @@
   <genericsetup:registerProfile
       name="default"
       title="plone-baseball"
-      directory="profiles/default"
       description="Installs the plone-baseball add-on."
       provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/default"
       post_handler=".setuphandlers.post_install"
       />
 
   <genericsetup:registerProfile
-    name="content"
-    title="Plone Baseball Site initial content"
-    directory="profiles/content"
-    description="Extension profile for Plone Baseball to add initial content"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-    post_handler=".setuphandlers.post_content"
-    />
+      name="content"
+      title="Plone Baseball Site initial content"
+      description="Extension profile for Plone Baseball to add initial content"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/content"
+      post_handler=".setuphandlers.post_content"
+      />
 
   <genericsetup:registerProfile
       name="uninstall"
       title="plone-baseball (uninstall)"
-      directory="profiles/uninstall"
       description="Uninstalls the plone-baseball add-on."
       provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/uninstall"
       post_handler=".setuphandlers.uninstall"
       />
 

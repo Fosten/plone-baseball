@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
+from plone import api
 from Products.CMFPlone.interfaces import INonInstallable
 from zope.interface import implementer
-from plone import api
-import requests
+
 import json
+import requests
 import transaction
+
 
 DEFAULT_BLOCKS = {
     "d3f1c443-583f-4e8e-a682-3bf25752a300": {"@type": "playerinfo"},
@@ -77,10 +79,10 @@ def patch_playercards(portal, DEFAULT_BLOCKS, DEFAULT_BLOCKS_LAYOUT):
     for brain in catalog(portal_type="playercard"):
         obj = brain.getObject()
         try:
-                obj.blocks = DEFAULT_BLOCKS
-                print(f"updating blocks for {obj.absolute_url()}")
-                obj.blocks_layout = DEFAULT_BLOCKS_LAYOUT
-                print(f"updating blocks_layout for {obj.absolute_url()}")
+            obj.blocks = DEFAULT_BLOCKS
+            print(f"updating blocks for {obj.absolute_url()}")
+            obj.blocks_layout = DEFAULT_BLOCKS_LAYOUT
+            print(f"updating blocks_layout for {obj.absolute_url()}")
 
         except Exception as e:
             print(f"Error updating object {obj.absolute_url()}: {e}")
