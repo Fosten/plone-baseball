@@ -54,6 +54,7 @@ def post_content(portal):
             "nameFirstLast": item["nameFirstLast"],
             "nameSlug": item["nameSlug"],
             "id": item["id"],
+            "fullFMLName": item["fullFMLName"],
         }
         for item in json_array["people"]
     ]
@@ -63,6 +64,7 @@ def post_content(portal):
             obj = api.content.create(
                 type="playercard",
                 title=item["nameFirstLast"],
+                description=u"Player information and statistics for " + item["fullFMLName"] + " better known as " + item["nameFirstLast"],
                 id=item["nameSlug"],
                 playerID=item["id"],
                 container=portal["players"],

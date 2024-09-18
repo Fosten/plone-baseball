@@ -14,6 +14,11 @@ class IPlayerCard(model.Schema):
         required=True,
     )
 
+    description = schema.Text(
+        title="Description",
+        required=True,
+    )
+
     image = NamedBlobImage(
         title="Image",
         description="Portrait of the player",
