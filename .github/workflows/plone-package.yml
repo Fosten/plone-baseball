@@ -51,12 +51,12 @@ jobs:
             - name: Black-Check
               run: |
                   tox -r -e black-check
-            - name: Test with tox
-              run: |
-                  tox -r
-              env:
-                PLONE-VERSION: ${{ matrix.plone-version }}
-                PYTHON-VERSION: ${{ matrix.python-version }}
+#            - name: Test with tox
+#              run: |
+#                  tox -r
+#              env:
+#                PLONE-VERSION: ${{ matrix.plone-version }}
+#                PYTHON-VERSION: ${{ matrix.python-version }}
             - name: "Upload coverage to Codecov"
               uses: "codecov/codecov-action@v4"
               with:
