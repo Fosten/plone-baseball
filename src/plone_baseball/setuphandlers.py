@@ -73,7 +73,7 @@ def post_content(portal):
             print(f"adding {obj.absolute_url()}")
 
         except Exception as e:
-            print(f"Error adding object {obj.absolute_url()}: {e}")
+            print(f"Error adding object: {e}")
 
 
 def patch_playercards(portal, DEFAULT_BLOCKS, DEFAULT_BLOCKS_LAYOUT):
