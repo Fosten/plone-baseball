@@ -5,11 +5,13 @@ import json
 import requests
 import transaction
 
+
 def reload_gs_profile(context):
     loadMigrationProfile(
         context,
-        'profile-plone_baseball:default',
+        "profile-plone_baseball:default",
     )
+
 
 def move_retired_playercards(portal):
     if not portal.get("retired-players", False):
@@ -36,10 +38,11 @@ def move_retired_playercards(portal):
 
         # Below line needs a transaction to actually delete the object
         if obj.id not in store_list:
-            api.content.move(source=obj, target=portal['retired-players'])
+            api.content.move(source=obj, target=portal["retired-players"])
             print(f"moving {obj.absolute_url()}")
 
         transaction.commit()
+
 
 def post_upgrade(context):
     """Post upgrade script"""

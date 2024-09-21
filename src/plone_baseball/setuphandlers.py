@@ -64,12 +64,15 @@ def post_content(portal):
             obj = api.content.create(
                 type="playercard",
                 title=item["nameFirstLast"],
-                description=u"Player information and statistics for " + item["fullFMLName"] + " better known as Major League Baseball player " + item["nameFirstLast"],
+                description="Player information and statistics for "
+                + item["fullFMLName"]
+                + " better known as Major League Baseball player "
+                + item["nameFirstLast"],
                 id=item["nameSlug"],
                 playerID=item["id"],
                 container=portal["players"],
             )
-            api.content.transition(obj=obj, transition='publish')
+            api.content.transition(obj=obj, transition="publish")
             print(f"adding {obj.absolute_url()}")
 
         except Exception as e:
