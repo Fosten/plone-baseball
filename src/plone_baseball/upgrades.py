@@ -13,13 +13,13 @@ def reload_gs_profile(context):
     )
 
 
-def move_retired_playercards(portal):
-    if not portal.get("retired-players", False):
+def move_inactive_playercards(portal):
+    if not portal.get("inactive-players", False):
         mainfolder = api.content.create(
             type="Document",
             container=portal,
-            title="Retired Players",
-            id="retired-players",
+            title="Inactive Players",
+            id="inactive-players",
         )
 
     json_array = json.loads(
@@ -38,7 +38,7 @@ def move_retired_playercards(portal):
 
         # Below line needs a transaction to actually delete the object
         if obj.id not in store_list:
-            api.content.move(source=obj, target=portal["retired-players"])
+            api.content.move(source=obj, target=portal["inactive-players"])
             print(f"moving {obj.absolute_url()}")
 
         transaction.commit()
@@ -48,5 +48,5 @@ def post_upgrade(context):
     """Post upgrade script"""
     # Do something at the end of the installation of this package.
     portal = api.portal.get()
-    move_retired_playercards(portal)
+    move_inactive_playercards(portal)
     reload_gs_profile(context)
