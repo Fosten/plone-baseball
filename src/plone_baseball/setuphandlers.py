@@ -104,12 +104,11 @@ def remove_playercards(portal):
         try:
             # Below line needs a transaction to actually delete the object
             api.content.delete(obj, check_linkintegrity=False)
+            transaction.commit()
             print(f"deleting {obj.absolute_url()}")
 
         except Exception as e:
             print(f"Error deleting object {obj.absolute_url()}: {e}")
-
-    transaction.commit()
 
 
 def post_install(context):
