@@ -43,6 +43,7 @@ def post_content(portal):
             title="Players",
             id="players",
         )
+        api.content.transition(obj=mainfolder, transition="publish")
 
     json_array = json.loads(
         requests.get(
