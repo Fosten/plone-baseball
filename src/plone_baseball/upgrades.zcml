@@ -10,7 +10,7 @@
       title="Update player cards"
       description="Create new player card if player card doesn't exist"
       source="*"
-      destination="1001"
+      destination="1002"
       handler="plone_baseball.upgrades.post_upgrade"
       sortkey="1"
       profile="plone_baseball:default"
