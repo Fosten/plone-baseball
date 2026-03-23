@@ -47,7 +47,7 @@ def post_content(portal):
 
     json_array = json.loads(
         requests.get(
-            "https://statsapi.mlb.com/api/v1/sports/1/players?season=2025"
+            "https://statsapi.mlb.com/api/v1/sports/1/players?season=2026"
         ).text
     )
     store_list = [

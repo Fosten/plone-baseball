@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 # [Unreleased]
 
+- Bump current year from 2025 to 2026 [fosten]
 - Convert CHANGES.rst to CHANGELOG.md [fosten]
 
 # [1.2.0] (2025-03-28)
